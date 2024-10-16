@@ -1,9 +1,6 @@
 import java.util.Scanner;
 
-// Crear un espacio para recargar vida combustible
-// Hacerrlos asentamientos y intercambiar con los aldeanos
-// Generador de planeta
-// Hacer centro galactico
+
 // Decorar con  arte ascii tienda, extraccionde recursos, centro galactico
 // Verificar  y  ordenar las los objetos y clases
 
@@ -18,15 +15,24 @@ public class NoJavaSky {
         Scanner entrada = new Scanner(System.in);
         int Iniciar;
 
-        // Menú inicial
+
         System.out.println("============================================================================================================================");
-        mostrar_titulo();
+        String titulo = """
+        ::::    :::  ::::::::       ::::::::::: :::     :::     :::     :::    ::: ::::::::        ::::::::  :::    ::: :::   ::: 
+        :+:+:   :+: :+:    :+:          :+:   :+: :+:   :+:     :+:   :+: :+:  :+ :+:    :+:      :+:    :+: :+:   :+:  :+:   :+: 
+        :+:+:+  +:+ +:+    +:+          +:+  +:+   +:+  +:+     +:+  +:+   +:+    +:+             +:+        +:+  +:+    +:+ +:+  
+        +#+ +:+ +#+ +#+    +:+          +#+ +#++:++#++: +#+     +:+ +#++:++#++:   +#++:++#++      +#++:++#++ +#++:++      +#++:   
+        +#+  +#+#+# +#+    +#+          +#+ +#+     +#+  +#+   +#+  +#+     +#+          +#+             +#+ +#+  +#+      +#+    
+        #+#   #+#+# #+#    #+#      #+# #+# #+#     #+#   #+#+#+#   #+#     #+#   #+#    #+#      #+#    #+# #+#   #+#     #+#    
+        ###    ####  ########        #####  ###     ###     ###     ###     ###    ########        ########  ###    ###    ###    
+                """;
+        System.out.println( titulo );
         System.out.println("============================================================================================================================");
         System.out.println("        1. Iniciar  2. Salir         ");
         System.out.print("Opción: ");
         Iniciar = entrada.nextInt();
 
-        // Opción para salir
+        
         if (Iniciar == 2) {
             System.out.println("\nSaliendo del juego...");
             entrada.close();
@@ -34,11 +40,26 @@ public class NoJavaSky {
         }
         System.out.println("\n");
         System.out.println("\n====================================");
-        // Bienvenida al jugador
-        System.out.println("\nBienvenido, jugador.");
+        
+        
+        System.out.println("""
+            ¡Bienvenido, valiente explorador!
+            Te encuentras en el vasto universo de NoJavaSky, donde los secretos de los planetas esperan ser descubiertos.
+            Tu misión es viajar entre mundos, recolectar recursos, puedes encontrar civilazion en algunos planetas y enfrentar
+            desafíos en tu camino hacia el centro galáctico donde por fin podras descansar.
+            
+            Empezaras con 10 planetas iniciales en tu mapa, pero si quieres viajar al 11, se desbloqueara un nuevo planeta y asi sucesivamente
+            
+            Prepárate para una aventura épica, llena de decisiones que afectarán tu viaje.
+            ¡La galaxia es tuya para explorar!
+
+            escribe el 1 para Continuar...
+            """);
+            System.out.print("Opción: ");
+            Iniciar = entrada.nextInt();
         System.out.println("====================================");
         
-        // Inicializar jugador y mapa
+        
         Nave nave = new Nave();
         Jugador jugador = new Jugador();
         MapaGalactico mapa = new MapaGalactico();
@@ -53,14 +74,43 @@ public class NoJavaSky {
         mapa.generadorPlaneta();
         mapa.generadorPlaneta();
         
+        
 
-        // Bucle principal del juego
+        
         bucle_principal(mapa,nave,jugador,PlanetaActual);
     }
 
     public static void bucle_principal(MapaGalactico mapa, Nave nave, Jugador jugador, Planeta planeta){
 
-        
+        if (mapa.obtenerPlanetaActual() instanceof CentroGalactico) {
+            System.out.println("\n------------------------------------");
+
+            System.out.println("""
+                                       _..-,--.._
+                                 ,`. ,',','      `.
+                                 `. `,/`/          \\
+                                   :'.`:            :
+        ____ _          _ __       | |`|            |
+      _(    `.)        ( (  )`.    : `-'            ;     _
+     ( (    ) ))      ( (    ))    ,\\_            _/.  (`','
+    ( (   )  _)        `-(__.'    '.  ```------'''  .`
+     '.__)--'       .-..           |``-...____...-''|
+                   (_)_))          |                |
+              ,'`.        ___...---|                |--..._
+  ,'`. ,'`. ,'   _`.---'''         |                | "
+-'..._`.   `.   /`-._  "      "    |    _           |
+       ```-..`./:::::)             `-...||______...-'    "
+              /:::_.'     "        "                "
+           _.:.'''   "                       "          
+""");
+
+
+            System.out.println("\"Has llegado al Centro Galáctico, el fin de tu épico viaje.\n" + //
+                                "La galaxia te reconoce como un verdadero explorador estelar.\n" + //
+                                "Tu nombre será recordado entre las estrellas por siempre....\"");
+            System.exit(0);
+        }
+
         System.out.println("        ~+\n" +
                    "                 *       +\n" +
                    "           '                  |\n" +
@@ -73,7 +123,7 @@ public class NoJavaSky {
                    "        O      *        '       .\n" +
                    "");
 
-        System.out.println("Has llegado a la órbita del planeta " + (mapa.getPosicion() +1) + " : " + planeta.getClass().getSimpleName());
+        System.out.println("Has llegado a la órbita del planeta " + (mapa.getPosicion()) + " : " + planeta.getClass().getSimpleName());
         Scanner entrada = new Scanner(System.in);
         while (true) {
             System.out.println("\n------------------------------------");
@@ -83,10 +133,11 @@ public class NoJavaSky {
             System.out.println("3. Ver combustible");
             System.out.println("4. Ver inventario del jugador");
             System.out.println("5. Mostrar mapa");
-            System.out.println("6. Salir del juego");
+            System.out.println("6. Mecanico y enfermeria");
+            System.out.println("7. Salir del juego");
             System.out.print("Opción: ");
 
-            // Manejo de excepciones para la entrada
+            
             try {
                 int opcion = entrada.nextInt();
 
@@ -111,6 +162,9 @@ public class NoJavaSky {
                         System.out.println(mapa.toString());
                         break;
                     case 6:
+                        mecanico_y_enfermeria(jugador, nave);
+                        break;
+                    case 7:
                         System.out.println("\nSaliendo del juego...");
                         entrada.close();
                         System.exit(0);
@@ -120,14 +174,14 @@ public class NoJavaSky {
                 }
             } catch (Exception e) {
                 System.out.println("\nEntrada no válida, intenta nuevamente.");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine(); 
             }
            
         }
         
     }
 
-    // Método para simular estar en el planeta
+    
     public static void estar_en_el_planeta(MapaGalactico mapa, Jugador jugador, Nave nave) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n------------------------------------");
@@ -142,12 +196,15 @@ public class NoJavaSky {
             System.out.println("2. Realizar un salto hacia otro planeta");
             System.out.println("3. Ver inventario del jugador");
             System.out.println("4. Ver energıa de proteccion del exotraje");
-            if (mapa.obtenerPlanetaActual() instanceof Oceanico) {
-                System.out.println("5. Visitar asentamientos");
-                System.out.println("6. Salir del juego");
+            System.out.println("5. Mecanico y enfermeria");
+            System.out.println("6. Mostrar mapa");
+            
+            if (mapa.obtenerPlanetaActual() instanceof Oceanico || mapa.obtenerPlanetaActual() instanceof Helado) {
+                System.out.println("7. Visitar asentamientos");
+                System.out.println("8. Salir del juego");
             }
             else{
-                System.out.println("5. Salir del juego");
+                System.out.println("7. Salir del juego");
                 
             }
             System.out.print("Opción: ");
@@ -156,7 +213,7 @@ public class NoJavaSky {
             try {
                 int opcion = entrada.nextInt();
 
-                // Opciones del menú
+               
                 switch (opcion) {
                     case 1:
                         System.out.println("extrayendo recursos");
@@ -174,6 +231,13 @@ public class NoJavaSky {
                         System.out.println("Energia restante: " + jugador.getUnidadesEnergiaProteccion());
                         break;
                     case 5:
+                        mecanico_y_enfermeria(jugador, nave);
+                        break;
+                    case 6:
+                        System.out.println("\n------------------------------------");
+                        System.out.println(mapa.toString());
+                        break;
+                    case 7:
                         if (mapa.obtenerPlanetaActual() instanceof Oceanico) {
                             Oceanico planeta = (Oceanico) mapa.obtenerPlanetaActual();
                             System.out.println("------------------------------------");
@@ -186,7 +250,7 @@ public class NoJavaSky {
                             System.out.println("------------------------------------");
                             System.out.println("\nViajando....");
                             barra_de_carga(20, 100);
-                            planeta.visitarAsentamientos(jugador);
+                            planeta.visitarAsentamientos(jugador, nave);
                         }
                         else {
                             System.out.println("\nSaliendo del juego...");
@@ -194,7 +258,7 @@ public class NoJavaSky {
                             System.exit(0);
                         }
                         break;
-                    case 6:
+                    case 8:
                         if (mapa.obtenerPlanetaActual() instanceof Oceanico || mapa.obtenerPlanetaActual() instanceof Helado) {
                             System.out.println("\nSaliendo del juego...");
                             entrada.close();
@@ -206,7 +270,7 @@ public class NoJavaSky {
                 }
             } catch (Exception e) {
                 System.out.println("\nEntrada no válida, intenta nuevamente.");
-                entrada.nextLine(); // Limpiar el buffer
+                entrada.nextLine(); 
             }
 
 
@@ -214,12 +278,12 @@ public class NoJavaSky {
 
     }
 
-    // Método que simula la barra de carga
+    
     public static void barra_de_carga(int longitud, int tiempoDePausa) {
         System.out.print("[");
         for (int i = 0; i < longitud; i++) {
             try {
-                Thread.sleep(tiempoDePausa); // Pausa en milisegundos
+                Thread.sleep(tiempoDePausa); 
                 System.out.print("=");
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -228,33 +292,36 @@ public class NoJavaSky {
         System.out.println("]");
     }
 
-    public static void mostrar_titulo(){
-        String titulo = """
-        ::::    :::  ::::::::       ::::::::::: :::     :::     :::     :::    ::: ::::::::        ::::::::  :::    ::: :::   ::: 
-        :+:+:   :+: :+:    :+:          :+:   :+: :+:   :+:     :+:   :+: :+:  :+ :+:    :+:      :+:    :+: :+:   :+:  :+:   :+: 
-        :+:+:+  +:+ +:+    +:+          +:+  +:+   +:+  +:+     +:+  +:+   +:+    +:+             +:+        +:+  +:+    +:+ +:+  
-        +#+ +:+ +#+ +#+    +:+          +#+ +#++:++#++: +#+     +:+ +#++:++#++:   +#++:++#++      +#++:++#++ +#++:++      +#++:   
-        +#+  +#+#+# +#+    +#+          +#+ +#+     +#+  +#+   +#+  +#+     +#+          +#+             +#+ +#+  +#+      +#+    
-        #+#   #+#+# #+#    #+#      #+# #+# #+#     #+#   #+#+#+#   #+#     #+#   #+#    #+#      #+#    #+# #+#   #+#     #+#    
-        ###    ####  ########        #####  ###     ###     ###     ###     ###    ########        ########  ###    ###    ###    
-                """;
-        System.out.println( titulo );
-    }
 
-    // Método para simular el salto entre planetas
+    
     public static void salto_de_planeta(MapaGalactico mapa, Planeta planeta, Nave nave, Jugador jugador) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n------------------------------------");
         System.out.println("¿A que planeta vas a viajar?");
         System.out.print("Opción: ");
         int opcion = entrada.nextInt();
-        int num_planeta_actual = mapa.getPosicion() + 1;
+        int num_planeta_actual = mapa.getPosicion();
+        System.out.println("numero planeta actual " + num_planeta_actual);
         int num_planeta_viaje = opcion;
         int salto = num_planeta_viaje - num_planeta_actual;
+
+        int centrogalactico_verif = verificar_centrogalactico(mapa, nave, salto, num_planeta_actual);
+        if (centrogalactico_verif == 2) {
+            System.out.println("\n------------------------------------");
+            System.err.println("No puedes viajar al CentroGalactico");
+            System.err.println("tu eficiencia de propulsor es: " + (nave.getEficienciaPropulsor()*100) + "%");
+            System.err.println("Necesitas superar el 50%");
+            System.err.println("Tip: donde hace mucho frio existen artesanos que pueden ayudarte");
+            return;
+        }
 
         System.out.println("------------------------------------");
         System.out.println("\nViajando....");
         barra_de_carga(20, 200);
+
+
+
+
         boolean perdiste = verificar_combustible(mapa, nave, salto);
         
 
@@ -263,7 +330,7 @@ public class NoJavaSky {
             return;
         }
 
-        mapa.viajarSiguiente(opcion-1);
+        mapa.viajarSiguiente(opcion);
         planeta = mapa.obtenerPlanetaActual();
         bucle_principal(mapa, nave, jugador, planeta);
 
@@ -281,12 +348,15 @@ public class NoJavaSky {
             System.out.print("Opción: ");
             int opcion = entrada.nextInt();
 
-                // Opciones del menú
+               
                 switch (opcion) {
                     case 1:
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantas Flores de sodio vas a extraer?");
                         int cantidad = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad)) {
+                            break;
+                        }
                         boolean perdiste = veifivar_salud(mapa, jugador, cantidad);
                         if (perdiste){
                             game_over(mapa, jugador, nave);
@@ -298,6 +368,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantos Cristalles de hidrogeno vas a extraer?");
                         int cantidad2 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad2)) {
+                            break;
+                        }
                         boolean perdiste2 = veifivar_salud(mapa, jugador, cantidad2);
                         if (perdiste2){
                             game_over(mapa, jugador, nave);
@@ -321,12 +394,15 @@ public class NoJavaSky {
             System.out.print("Opción: ");
             int opcion = entrada.nextInt();
 
-                // Opciones del menú
+               
                 switch (opcion) {
                     case 1:
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantas Flores de sodio vas a extraer?");
                         int cantidad = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad)) {
+                            break;
+                        }
                         boolean perdiste = veifivar_salud(mapa, jugador, cantidad);
                         if (perdiste){
                             game_over(mapa, jugador, nave);
@@ -338,6 +414,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantos Cristalles de hidrogeno vas a extraer?");
                         int cantidad2 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad2)) {
+                            break;
+                        }
                         boolean perdiste2 = veifivar_salud(mapa, jugador, cantidad2);
                         if (perdiste2){
                             game_over(mapa, jugador, nave);
@@ -349,6 +428,9 @@ public class NoJavaSky {
                     System.out.println("\n------------------------------------");
                     System.out.println("¿Cuanto uranio vas a extraer?");
                     int cantidad3 = entrada.nextInt();
+                    if (check(mapa, jugador, cantidad3)) {
+                        break;
+                    }
                     boolean perdiste3 = veifivar_salud(mapa, jugador, cantidad3);
                         if (perdiste3){
                             game_over(mapa, jugador, nave);
@@ -369,12 +451,14 @@ public class NoJavaSky {
             System.out.print("Opción: ");
             int opcion = entrada.nextInt();
 
-                // Opciones del menú
                 switch (opcion) {
                     case 1:
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantas Flores de sodio vas a extraer?");
                         int cantidad = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad)) {
+                            break;
+                        }
                         boolean perdiste = veifivar_salud(mapa, jugador, cantidad);
                         if (perdiste){
                             game_over(mapa, jugador, nave);
@@ -386,6 +470,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantos Cristalles de hidrogeno vas a extraer?");
                         int cantidad2 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad2)) {
+                            break;
+                        }
                         boolean perdiste2 = veifivar_salud(mapa, jugador, cantidad2);
                         if (perdiste2){
                             game_over(mapa, jugador, nave);
@@ -397,6 +484,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuanto platino vas a extraer?");
                         int cantidad3 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad3)) {
+                            break;
+                        }
                         boolean perdiste3 = veifivar_salud(mapa, jugador, cantidad3);
                         if (perdiste3){
                             game_over(mapa, jugador, nave);
@@ -416,12 +506,15 @@ public class NoJavaSky {
             System.out.print("Opción: ");
             int opcion = entrada.nextInt();
 
-                // Opciones del menú
+                
                 switch (opcion) {
                     case 1:
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantas Flores de sodio vas a extraer?");
                         int cantidad = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad)) {
+                            break;
+                        }
                         boolean perdiste = veifivar_salud(mapa, jugador, cantidad);
                         if (perdiste){
                             game_over(mapa, jugador, nave);
@@ -433,6 +526,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantos Cristalles de hidrogeno vas a extraer?");
                         int cantidad2 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad2)) {
+                            break;
+                        }
                         boolean perdiste2 = veifivar_salud(mapa, jugador, cantidad2);
                         if (perdiste2){
                             game_over(mapa, jugador, nave);
@@ -452,12 +548,14 @@ public class NoJavaSky {
             System.out.print("Opción: ");
             int opcion = entrada.nextInt();
 
-                // Opciones del menú
                 switch (opcion) {
                     case 1:
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantas Flores de sodio vas a extraer?");
                         int cantidad = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad)) {
+                            break;
+                        }
                         boolean perdiste = veifivar_salud(mapa, jugador, cantidad);
                         if (perdiste){
                             game_over(mapa, jugador, nave);
@@ -469,6 +567,9 @@ public class NoJavaSky {
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Cuantos Cristalles de hidrogeno vas a extraer?");
                         int cantidad2 = entrada.nextInt();
+                        if (check(mapa, jugador, cantidad2)) {
+                            break;
+                        }
                         boolean perdiste2 = veifivar_salud(mapa, jugador, cantidad2);
                         if (perdiste2){
                             game_over(mapa, jugador, nave);
@@ -483,23 +584,41 @@ public class NoJavaSky {
 
 
     public static boolean veifivar_salud(MapaGalactico mapa, Jugador jugador, int cantidad){
+        
         Planeta planeta = mapa.obtenerPlanetaActual();
         float energia = planeta.getConsumoEnergia();
         float energia_jugador = jugador.getUnidadesEnergiaProteccion();
         float eficiencia = jugador.getEficienciaEnergiaProteccion();
 
         float unidadesConsumidas =  0.5f * cantidad * (energia/100) * (1-eficiencia);
-
         float vida = energia_jugador - unidadesConsumidas;
         jugador.setUnidadesEnergiaProteccion(vida);
-        System.out.println("energia jugador = " + energia_jugador);
-        System.out.println("energia consumido segun lo sacado = " + unidadesConsumidas);
+        
+        
 
         
         if (jugador.getUnidadesEnergiaProteccion() <= 0) {
             
             return true;
         }
+        return false;
+    }
+
+    public static boolean check(MapaGalactico mapa, Jugador jugador, int cantidad){
+        Scanner entrada = new Scanner(System.in);
+        Planeta planeta = mapa.obtenerPlanetaActual();
+        float energia = planeta.getConsumoEnergia();
+        float eficiencia = jugador.getEficienciaEnergiaProteccion();
+
+        float unidadesConsumidas =  0.5f * cantidad * (energia/100) * (1-eficiencia);
+        System.out.println("\n------------------------------------");
+        System.out.println("Vas a recibir " + unidadesConsumidas + " de dano, estas seguro? 1. Si 2. No");
+        System.out.print("Opción: ");
+        int opcion = entrada.nextInt();
+        if (opcion == 2) {
+            return true;
+        }
+        barra_de_carga(20, 100);
         return false;
     }
 
@@ -571,6 +690,7 @@ public class NoJavaSky {
     }
 
 
+
     public static void mecanico_y_enfermeria(Jugador jugador, Nave nave){
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n------------------------------------");
@@ -612,12 +732,14 @@ public class NoJavaSky {
                             int opcion3 = entrada.nextInt();
                             switch (opcion3) {
                                 case 1:
-                                    // establecer limite para no superar el maximo
+                                    
                                     float combusitble = unidadesRecargadas + nave.getUnidadesCombustible();
+                                    jugador.eliminarDelInventario("CristalesDeHidrogeno", unidadesHidrogeno);
                                     nave.setUnidadesCombustible(combusitble);
+                                    flag = false;
                                     break;
                                 case 2:
-                                    
+                                    flag = false;
                                     return;
                                     
                             }
@@ -626,6 +748,7 @@ public class NoJavaSky {
 
                 
                     case 2:
+                       
                         break;
                 }
 
@@ -634,6 +757,59 @@ public class NoJavaSky {
                 break;
 
             case 2:
+                System.out.println("\n------------------------------------");
+                System.out.println("Bienvenido a la enfermeria");
+                System.out.println("¿Qué deseas hacer?");
+                System.out.println("1. curarte");
+                System.out.println("2. Atras");
+                System.out.println("------------------------------------");
+                System.out.println("Vida restante: " + jugador.getUnidadesEnergiaProteccion());
+                System.out.println("FloresDeSodio: " + jugador.obtenerCantidadDe("FloresDeSodio"));
+                System.out.print("Opción: ");
+                int opcion3 = entrada.nextInt();
+                switch (opcion3) {
+                    case 1:
+                    switch (opcion3) {
+                        case 1:
+                            boolean flag = true;
+                            while(flag){
+                                System.out.println("\n------------------------------------");
+                                System.out.println("¿Cuantas flores de sodio vas a usar?");
+                                System.out.print("Unidades: ");
+                                int unidadesSodio = entrada.nextInt();
+                                float unidadesRecargadas = 0.65f * unidadesSodio * (1 + jugador.getEficienciaEnergiaProteccion()); 
+                                System.out.print("Se recargara " + unidadesRecargadas + " de vida");
+                                System.out.println("¿Estas seguro? 1. Si 2. No");
+                                System.out.print("Opción: ");
+                                int opcion4 = entrada.nextInt();
+                                switch (opcion4) {
+                                    case 1:
+                                       
+                                        jugador.eliminarDelInventario("FloresDeSodio", unidadesSodio);
+                                        float vida = unidadesRecargadas + jugador.getUnidadesEnergiaProteccion();
+                                        jugador.setUnidadesEnergiaProteccion(vida);
+                                        flag = false;
+                                        break;
+                                    case 2:
+                                        
+                                        return;
+                                        
+                                }
+                            }
+                            
+    
+                    
+                        case 2:
+                           
+                            break;
+                    }
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
+            
                 break;
             
             case 3:
@@ -651,7 +827,26 @@ public class NoJavaSky {
 
     }
 
+    public static int verificar_centrogalactico(MapaGalactico mapa, Nave nave, int salto, int actual){
+        salto = Math.abs(salto);
+        
+        mapa.viajarSiguiente(salto);
+        if (mapa.obtenerPlanetaActual() instanceof CentroGalactico) {
+            if (nave.getEficienciaPropulsor() > 0.5f) {
+                mapa.viajarSiguiente(actual);
+                return 1;
+            }
+            else {
+                mapa.viajarSiguiente(actual);
+                return 2;
+            }
+        }
+        else{
+            mapa.viajarSiguiente(actual);
+            return 3;
+        }
 
+    }
 
 }
 

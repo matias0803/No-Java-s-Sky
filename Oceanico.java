@@ -29,7 +29,6 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
     }
 
 
-
     @Override
     public boolean visitar(Jugador jugador){
 
@@ -108,8 +107,8 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
 
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Qué deseas intercambiar?");
-                        System.out.println("1. Mejorar vida maxima (+ 50 unidades): x Plutonio");
-                        System.out.println("2. Mejorar eficiencia de traje en un 10%: x Uranio");
+                        System.out.println("1. Mejorar vida maxima (+ 50 unidades): 1600 Platino");
+                        System.out.println("2. Mejorar eficiencia de traje en un 10%: 2200 Uranio");
                         System.out.println("------------------------------------");
                         System.out.println("Uranio: " + jugador.obtenerCantidadDe("Uranio"));
                         System.out.println("Platino: " + jugador.obtenerCantidadDe("Platino"));
@@ -118,21 +117,23 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
                         int opcion3 = entrada.nextInt();
                         switch (opcion3) {
                             case 1:
-                                if (jugador.obtenerCantidadDe("Uranio") < 100) {
+                                if (jugador.obtenerCantidadDe("Uranio") < 1600) {
                                     System.out.println("No tienes la cantidad suficiente...");
                                     break;
                                 }
                                 float unidades = jugador.getUnidadesEnergiaProteccion();
+                                jugador.eliminarDelInventario("Uranio", 1600);
                                 jugador.setMaxUnidadesEnergiaProteccion(unidades + 50);
                                 System.out.println("Vida maxima mejorarada, nueva cantidad: " + jugador.getMaxUnidadesEnergiaProteccion());
                                 
                                 break;
                             case 2:
-                                if (jugador.obtenerCantidadDe("Platino") < 100) {
+                                if (jugador.obtenerCantidadDe("Platino") < 2200) {
                                     System.out.println("No tienes la cantidad suficiente...");
                                     break;
                                 }
-                                jugador.setEficienciaEnergiaProteccion(0.1f);
+                                jugador.eliminarDelInventario("Platino", 2200);
+                                jugador.setEficienciaEnergiaProteccion(jugador.getEficienciaEnergiaProteccion() + 0.1f);
                                 System.out.println("Eficiencia de traje mejorada, nueva cantidad: " + jugador.getEficienciaEnergiaProteccion());
                                 break;
                         

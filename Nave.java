@@ -32,11 +32,11 @@ public class Nave {
         return eficienciaPropulsor;
     }
 
-    public void setMaxUnidadesEnergiaProteccion(float unidades){
+    public void setMaxUnidadesCombustible(float unidades){
         this.maxUnidadesCombustible = unidades;
     }
 
-    public float getMaxUnidadesEnergiaProteccion(){
+    public float getMaxUnidadesCombustible(){
         return maxUnidadesCombustible;
     }
 

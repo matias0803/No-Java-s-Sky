@@ -67,5 +67,20 @@ public class Jugador {
     public int obtenerCantidadDe(String objeto) {
         return inventario.getOrDefault(objeto, 0); 
     }
+
+    public void eliminarDelInventario(String objeto, int cantidad) {
+        if (inventario.containsKey(objeto)) {
+            int cantidadActual = inventario.get(objeto);
+            if (cantidad >= cantidadActual) {
+                inventario.remove(objeto); // Elimina el objeto del inventario si la cantidad es mayor o igual
+                System.out.println(objeto + " ha sido eliminado del inventario.");
+            } else {
+                inventario.put(objeto, cantidadActual - cantidad); // Resta la cantidad
+                System.out.println("Se han eliminado " + cantidad + " de " + objeto + ". Restan " + (cantidadActual - cantidad) + ".");
+            }
+        } else {
+            System.out.println(objeto + " no está en el inventario.");
+        }
+    }
     
 }

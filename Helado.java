@@ -24,6 +24,8 @@ public class Helado extends Planeta implements tieneAsentamientos{
         this.temperatura = temperatura;
     }
 
+
+
     @Override
     public boolean visitar(Jugador jugador){
         return true;
@@ -72,112 +74,13 @@ public class Helado extends Planeta implements tieneAsentamientos{
 
     public void visitarAsentamientos(Jugador jugador){
 
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("\n------------------------------------");
-        System.out.println("Has llegado a los Asentamientos Oceanicos");
-        
-        System.out.println("\n------------------------------------");
-        System.out.println("¿Qué deseas hacer?");
-        System.out.println("1. Visitar los Asentamientos");
-        System.out.println("2. Ver inventario del jugador");
-        System.out.println("3. Volver");
-        System.out.println("4. Salir del juego");
-        System.out.print("Opción: ");
-        int opcion = entrada.nextInt();
-
-        switch (opcion) {
-            case 1:
-                System.out.println("\n------------------------------------");
-                System.out.println("¡Viajero de tierras lejanas! El frío aquí es implacable, pero también preserva tesoros únicos.");
-                System.out.println("Si tienes algo que ofrecer, estaré encantado de hacer un trato que beneficie a ambos en este desierto helado.");
-                System.out.println("¿Qué traes contigo?");
-                System.out.println("------------------------------------");
-                System.out.println("¿Qué deseas hacer?");
-                System.out.println("1. intercambiar");
-                System.out.println("2. Volver");
-                System.out.print("Opción: ");
-                int opcion2 = entrada.nextInt();
-                switch (opcion2) {
-                    case 1:
-
-                        System.out.println("\n------------------------------------");
-                        System.out.println("¿Qué deseas intercambiar?");
-                        System.out.println("1. Mejorar vida maxima (+ 50 unidades): x Plutonio");
-                        System.out.println("2. Mejorar eficiencia de traje en un 10%: x Uranio");
-                        System.out.println("------------------------------------");
-                        System.out.println("Uranio: " + jugador.obtenerCantidadDe("Uranio"));
-                        System.out.println("Platino: " + jugador.obtenerCantidadDe("Platino"));
-                        System.out.print("Opción: ");
-
-                        int opcion3 = entrada.nextInt();
-                        switch (opcion3) {
-                            case 1:
-                                if (jugador.obtenerCantidadDe("Uranio") < 100) {
-                                    System.out.println("No tienes la cantidad suficiente...");
-                                    break;
-                                }
-                                float unidades = jugador.getUnidadesEnergiaProteccion();
-                                jugador.setMaxUnidadesEnergiaProteccion(unidades + 50);
-                                System.out.println("Vida maxima mejorarada, nueva cantidad: " + jugador.getMaxUnidadesEnergiaProteccion());
-                                
-                                break;
-                            case 2:
-                                if (jugador.obtenerCantidadDe("Platino") < 100) {
-                                    System.out.println("No tienes la cantidad suficiente...");
-                                    break;
-                                }
-                                jugador.setEficienciaEnergiaProteccion(0.1f);
-                                System.out.println("Eficiencia de traje mejorada, nueva cantidad: " + jugador.getEficienciaEnergiaProteccion());
-                                break;
-                        
-                            default:
-                                break;
-                        }
-
-                        
-
-                        break;
-                    case 2:
-                        break;
-                
-                    default:
-                        break;
-                }
-
-
-
-
-
-
-
-                break;
-            case 2:
-                System.out.println("\n------------------------------------");
-                jugador.mostrarInventario();
-                break;
-            case 3:
-
-                break;
-            case 4:
-                System.out.println("\nSaliendo del juego...");
-                entrada.close();
-                System.exit(0);
-                break;
-
-
-        
-            
-        }
-
-
-
     }
 
     public void visitarAsentamientos(Jugador jugador, Nave nave){
 
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n------------------------------------");
-        System.out.println("Has llegado a los Asentamientos Oceanicos");
+        System.out.println("Has llegado a los Asentamientos Helados");
         
         System.out.println("\n------------------------------------");
         System.out.println("¿Qué deseas hacer?");
@@ -205,8 +108,8 @@ public class Helado extends Planeta implements tieneAsentamientos{
 
                         System.out.println("\n------------------------------------");
                         System.out.println("¿Qué deseas intercambiar?");
-                        System.out.println("1. Mejorar combustible maximo (+ 50 unidades): x Plutonio");
-                        System.out.println("2. Mejorar eficiencia de combustible en un 10%: x Uranio");
+                        System.out.println("1. Mejorar combustible maximo (+ 50 unidades): 1600 Plutonio");
+                        System.out.println("2. Mejorar eficiencia de propulsor en un 10%: 2200 Uranio");
                         System.out.println("------------------------------------");
                         System.out.println("Uranio: " + jugador.obtenerCantidadDe("Uranio"));
                         System.out.println("Platino: " + jugador.obtenerCantidadDe("Platino"));
@@ -215,22 +118,24 @@ public class Helado extends Planeta implements tieneAsentamientos{
                         int opcion3 = entrada.nextInt();
                         switch (opcion3) {
                             case 1:
-                                if (jugador.obtenerCantidadDe("Uranio") < 100) {
+                                if (jugador.obtenerCantidadDe("Uranio") < 1600) {
                                     System.out.println("No tienes la cantidad suficiente...");
                                     break;
                                 }
-                                float unidades = jugador.getUnidadesEnergiaProteccion();
-                                jugador.setMaxUnidadesEnergiaProteccion(unidades + 50);
-                                System.out.println("Vida maxima mejorarada, nueva cantidad: " + jugador.getMaxUnidadesEnergiaProteccion());
+                                float unidades = nave.getUnidadesCombustible();
+                                jugador.eliminarDelInventario("Uranio", 1600);
+                                nave.setMaxUnidadesCombustible(unidades + 50);
+                                System.out.println("combustible maximo mejorarado, nueva cantidad: " + nave.getUnidadesCombustible());
                                 
                                 break;
                             case 2:
-                                if (jugador.obtenerCantidadDe("Platino") < 100) {
+                                if (jugador.obtenerCantidadDe("Platino") < 2200) {
                                     System.out.println("No tienes la cantidad suficiente...");
                                     break;
                                 }
-                                jugador.setEficienciaEnergiaProteccion(0.1f);
-                                System.out.println("Eficiencia de traje mejorada, nueva cantidad: " + jugador.getEficienciaEnergiaProteccion());
+                                jugador.eliminarDelInventario("Platino", 2200);
+                                nave.setEficienciaPropulsor(nave.getEficienciaPropulsor() + 0.1f);
+                                System.out.println("Eficiencia de porpulsor mejorada, nueva cantidad: " + nave.getEficienciaPropulsor());
                                 break;
                         
                             default:

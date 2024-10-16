@@ -34,7 +34,6 @@ public class Radioactivo extends Planeta {
         this.radiacion = radiacion;
     }
 
-   
 
 
     @Override

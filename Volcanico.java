@@ -31,32 +31,6 @@ public class Volcanico extends Planeta{
         this.temperatura = temperatura;
     }
 
-    
-    public int getRadio() {
-        return radio;
-    }
-
-    public void setRadio(int radio) {
-        this.radio = radio;
-    }
-
-    
-    public int getFloresDeSodio() {
-        return floresDeSodio;
-    }
-
-    public void setFloresDeSodio(int floresDeSodio) {
-        this.floresDeSodio = floresDeSodio;
-    }
-
-
-    public int getCristalesHidrogeno() {
-        return cristalesHidrogeno;
-    }
-
-    public void setCristalesHidrogeno(int cristalesHidrogeno) {
-        this.cristalesHidrogeno = cristalesHidrogeno;
-    }
 
     @Override
     public boolean visitar(Jugador jugador){

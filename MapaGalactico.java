@@ -9,40 +9,40 @@ public class MapaGalactico {
     private boolean centroGalacticoGenerado;
 
     public MapaGalactico() {
-        this.planetas = new ArrayList<>(); // Inicializar la lista de planetas
+        this.planetas = new ArrayList<>(); 
         this.posicion = 0;
         this.centroGalacticoGenerado = false;
     }
 
     public Planeta generadorPlaneta() {
         Random random = new Random();
-        int probabilidad = random.nextInt(100); // Genera un número entre 0 y 99
+        int probabilidad = random.nextInt(100); 
 
         
 
         if (probabilidad < 30) {
-            Helado nuevoPlaneta = new Helado(); // 30% de probabilidad
+            Helado nuevoPlaneta = new Helado(); 
             planetas.add(nuevoPlaneta);
             return nuevoPlaneta; 
         } else if (probabilidad < 60) {
-            Oceanico nuevoPlaneta = new Oceanico(); // 30% de probabilidad
+            Oceanico nuevoPlaneta = new Oceanico(); 
             planetas.add(nuevoPlaneta);
             return nuevoPlaneta; 
         } else if (probabilidad < 80) {
-            Radioactivo nuevoPlaneta = new Radioactivo(); // 20% de probabilidad
+            Radioactivo nuevoPlaneta = new Radioactivo(); 
             planetas.add(nuevoPlaneta);
             return nuevoPlaneta;
         } else if (probabilidad < 99) {
-            Volcanico nuevoPlaneta = new Volcanico(); // 19% de probabilidad
+            Volcanico nuevoPlaneta = new Volcanico(); 
             planetas.add(nuevoPlaneta);
             return nuevoPlaneta;
         } else if (!centroGalacticoGenerado) {
-            CentroGalactico nuevoPlaneta = new CentroGalactico(); // 1% de probabilidad
-            centroGalacticoGenerado = true; // Marcar que se ha generado el centro galáctico
+            CentroGalactico nuevoPlaneta = new CentroGalactico(); 
+            centroGalacticoGenerado = true; 
             planetas.add(nuevoPlaneta);
             return nuevoPlaneta;
         } else {
-            // Si ya se generó el centro galáctico, generamos otro planeta
+            
             return generadorPlaneta();
         }
 
@@ -50,10 +50,11 @@ public class MapaGalactico {
     }
 
     public void viajarSiguiente(int pos) {
-        if (pos < planetas.size() - 1) {
+        if (pos < planetas.size()) {
             setPosicion(pos);
         } else {
-            System.out.println("No hay más planetas para explorar.");
+            generadorPlaneta();
+            setPosicion(pos);
         }
     }
 
@@ -61,7 +62,7 @@ public class MapaGalactico {
         if (posicion >= 0 && posicion < planetas.size()) {
             return planetas.get(posicion);
         }
-        return null; // Retorna null si no hay planeta en la posición actual
+        return null; 
     }
 
     public List<Planeta> getPlanetas() {
@@ -81,11 +82,11 @@ public class MapaGalactico {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Mapa Galáctico:\n");
-        sb.append("Posición actual: ").append(posicion+1).append("\n");
+        sb.append("Posición actual: ").append(posicion).append("\n");
         sb.append("Planetas:\n");
 
         for (int i = 0; i < planetas.size(); i++) {
-            sb.append(" - Planeta ").append(i + 1).append(": ").append(planetas.get(i).getClass().getSimpleName()).append("\n");
+            sb.append(" - Planeta ").append(i).append(": ").append(planetas.get(i).getClass().getSimpleName()).append("\n");
         }
 
         return sb.toString();
