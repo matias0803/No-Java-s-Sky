@@ -1,14 +1,25 @@
 import java.util.Scanner;
 
 
-// Decorar con  arte ascii tienda, extraccionde recursos, centro galactico
-// Verificar  y  ordenar las los objetos y clases
+
 
 
 
 public class NoJavaSky {
 
-
+/*****
+* void main()
+* Presenta el titulo de el juego y una breve introduccion,
+* inicializa los objetos nave, jugador, mapagalactico y
+* genera los primeros 10 planetas.
+* llama a la funcion de el bucle principal de el juego
+******
+* Input:
+* .......
+******
+* Returns:
+* void
+*****/
 
     public static void main(String[] args) {
 
@@ -79,6 +90,23 @@ public class NoJavaSky {
         
         bucle_principal(mapa,nave,jugador,PlanetaActual);
     }
+
+/*****
+* void bucle_principal(MapaGalactico mapa, Nave nave, Jugador jugador, Planeta planeta)
+* verifica si el planeta es Centrogalactico en ese caso da el mensaje de victoria,
+* si no es asi coloca al jugador en la orbita de el planeta y le da las opciones a
+* realizar.
+* 
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Nave nave: el objeto Nave ya inicializado
+* Jugador jugador: el objeto Jugador ya inicializado
+* Planeta planeta: planeta actual en el mapa galactico
+******
+* Returns:
+* void
+*****/
 
     public static void bucle_principal(MapaGalactico mapa, Nave nave, Jugador jugador, Planeta planeta){
 
@@ -181,7 +209,22 @@ public class NoJavaSky {
         
     }
 
-    
+/*****
+* void estar_en_el_planeta(MapaGalactico mapa, Jugador jugador, Nave nave)
+* Bucle para la opcion de estar en la superficie del planeta
+* dando las opciones correspondientes
+* 
+* 
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Nave nave: el objeto Nave ya inicializado
+* Jugador jugador: el objeto Jugador ya inicializado
+******
+* Returns:
+* void
+*****/
+
     public static void estar_en_el_planeta(MapaGalactico mapa, Jugador jugador, Nave nave) {
         Scanner entrada = new Scanner(System.in);
         System.out.println("\n------------------------------------");
@@ -193,7 +236,7 @@ public class NoJavaSky {
             System.out.println("\n------------------------------------");
             System.out.println("¿Qué deseas hacer?");
             System.out.println("1. Extraer recursos");
-            System.out.println("2. Realizar un salto hacia otro planeta");
+            System.out.println("2. Volver a la orbita de el planeta");
             System.out.println("3. Ver inventario del jugador");
             System.out.println("4. Ver energıa de proteccion del exotraje");
             System.out.println("5. Mecanico y enfermeria");
@@ -220,7 +263,10 @@ public class NoJavaSky {
                         extraccion_recursos(mapa, jugador, nave);
                         break;
                     case 2:
-                        salto_de_planeta(mapa, mapa.obtenerPlanetaActual(), nave, jugador);
+                        System.out.println("------------------------------------");
+                        System.out.println("\nDespegando....");
+                        barra_de_carga(20, 200);
+                        bucle_principal(mapa, nave, jugador, mapa.obtenerPlanetaActual());
                         return;
                     case 3:
                         barra_de_carga(20, 2);
@@ -278,6 +324,10 @@ public class NoJavaSky {
 
     }
 
+/*****
+* void barra_de_carga(int longitud, int tiempoDePausa)
+* simula una barra de carga en la terminal
+*****/
     
     public static void barra_de_carga(int longitud, int tiempoDePausa) {
         System.out.print("[");
@@ -292,7 +342,23 @@ public class NoJavaSky {
         System.out.println("]");
     }
 
-
+/*****
+* void estar_en_el_planeta(MapaGalactico mapa, Jugador jugador, Nave nave)
+* Pregunta a que planeta de el mapa viajar, si quieres viajar al
+* centro galactico verifica si cumples con la condicion de la eficiencia
+* despues verifica si alcanza el combustible y si no llama al game_over
+* despues cambia el indice en la lista de planetas y actualiza el planeta actual
+* vuelve a llamar al bucle_principal con los valores actualizados
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Planeta planeta: planeta actual
+* Nave nave: el objeto Nave ya inicializado
+* Jugador jugador: el objeto Jugador ya inicializado
+******
+* Returns:
+* void
+*****/
     
     public static void salto_de_planeta(MapaGalactico mapa, Planeta planeta, Nave nave, Jugador jugador) {
         Scanner entrada = new Scanner(System.in);
@@ -335,6 +401,23 @@ public class NoJavaSky {
         bucle_principal(mapa, nave, jugador, planeta);
 
     }
+
+/*****
+* void extraccion_de_recursos(MapaGalactico mapa, Jugador jugador, Nave nave)
+* funcion para la opcion extraer recursos, pregunta que recurso de el planeta vas a
+* extraer dependiendo de el planeta en el que se encuentra en el mapa y pregunta la cantidad
+* despues llama a la funcion check si retorna true llega hasta ahi el switch posterior si retorna false
+* llama a la funcion verificar_salud si retorna true llama a la funcion game over
+* si retorna false usa el metodo de extraccion de recursos de el planeta correspondiente
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Nave nave: el objeto Nave ya inicializado
+* Jugador jugador: el objeto Jugador ya inicializado
+******
+* Returns:
+* void
+*****/
 
     public static void extraccion_recursos(MapaGalactico mapa, Jugador jugador, Nave nave){
         Planeta planeta = mapa.obtenerPlanetaActual();
@@ -581,7 +664,22 @@ public class NoJavaSky {
         }
     }
 
-
+/*****
+* boolean verificar_salud(MapaGalactico mapa, Jugador jugador, int cantidad)
+* calcula las unidades de energia con la ecuacion dada
+* y actualiza la energia de el jugador
+* si esta es menor o igual a 0 retorna true
+* si no false
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Jugador jugador: el objeto Jugador ya inicializado
+* int cantidad: la cantidad de recursos que se quiere extraer
+******
+* Returns:
+* boolean true: si al jugador no le queda vida
+* boolean false: si al jugador le queda vida
+*****/
 
     public static boolean veifivar_salud(MapaGalactico mapa, Jugador jugador, int cantidad){
         
@@ -604,6 +702,23 @@ public class NoJavaSky {
         return false;
     }
 
+/*****
+* boolean check(MapaGalactico mapa, Jugador jugador, int cantidad)
+* verifica la cantidad de energia que se consumira con la ecuacion dada
+* , la imprime por consola y pregunta por consola si confirma la extraccion de recursos
+* si el usuario por consola escribe 2 retorna true si no false
+* 
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* int cantidad: la cantidad de recursos a extraer
+* Jugador jugador: el objeto Jugador ya inicializado
+******
+* Returns:
+* boolean true: si el jugador no quiere extraer los recursos
+* boolean false: si el jugador quiere extraer los recursos
+*****/
+
     public static boolean check(MapaGalactico mapa, Jugador jugador, int cantidad){
         Scanner entrada = new Scanner(System.in);
         Planeta planeta = mapa.obtenerPlanetaActual();
@@ -621,6 +736,23 @@ public class NoJavaSky {
         barra_de_carga(20, 100);
         return false;
     }
+
+/*****
+* boolean verificar_combustible(MapaGalactico mapa, Nave nave, int valor_salto)
+* verifica la cantidad de combustible que se consumira con la ecuacion dada
+* con el salto que se quiere hacer.
+* si el combustible es menor a 0 retorna true
+* al contrario actualiza el valor de combustible de el objeto Nave
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* int valor salto: el valor de el salto que se quiere realizar
+* Nave nave: el objeto Nave ya inicializado
+******
+* Returns:
+* boolean true: si a la nave no le da el combustible
+* boolean false: si a la nave le alcanza el combustible
+*****/
 
     public static boolean verificar_combustible(MapaGalactico mapa, Nave nave, int valor_salto){
         float combustible = nave.getUnidadesCombustible();
@@ -642,6 +774,23 @@ public class NoJavaSky {
 
 
     }
+
+/*****
+* void game_over(MapaGalactico mapa, Jugador jugador, Nave nave)
+* 
+*  a los Objetos de el input actualiza sus valores a los iniciales
+*  imprime un mensaje de game over con un mensaje
+*   si el jugador quiere continuar vuelve a llamar a la funcion bucle_principal
+*  con los objetos restaruados
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Nave nave: el objeto Nave ya inicializado
+* Jugador jugador: el objeto Jugador ya inicializado
+******
+* Returns:
+* void
+*****/
 
     public static void game_over(MapaGalactico mapa, Jugador jugador, Nave nave){
 
@@ -689,7 +838,21 @@ public class NoJavaSky {
 
     }
 
-
+/*****
+* void mecanico_y_enfermeria(Jugador jugador, Nave nave)
+* da por consola las opciones si es mecanico pregunta si quieres recargar combustible
+* si es asi pregunta cuantas cristalesDeHidrogeno y calcula el valor con la ecuacion dada y actualiza valores
+* lo mismo con la enfermeria pero con floresDeSodio
+* 
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Jugador jugador: el objeto Jugador ya inicializado
+* Nave nave: el objeto Nave ya actualizado
+******
+* Returns:
+* void
+*****/
 
     public static void mecanico_y_enfermeria(Jugador jugador, Nave nave){
         Scanner entrada = new Scanner(System.in);
@@ -826,6 +989,25 @@ public class NoJavaSky {
 
 
     }
+
+/*****
+* int verificar_centrogalactico(MapaGalactico mapa, Nave nave, int salto, int actual)
+* verifica si al planeta que se quiere viajar es CentroGalactico y si es asi
+* verifica si la eficiencia de propulsor de la nave corresponde con la condicion dada
+* si coincide retorna 1 y si no retorna 2, si la condicion de el primer if es false retorna 3
+* 
+******
+* Input:
+* MapaGalactio mapa: el objeto que contiene los planetas ya inicializados
+* Nave nave: objeto Nave ya inicializado
+* int salto: el salto que se quiere hacer
+* int actual: indice actual en el mapa
+******
+* Returns:
+* int return 1: si la nave coincide con la condicion a viajar 
+* int return 2: si no coincide con la condicion a viajar
+* int return 3: si el planeta no corresponde a CentroGalactico
+*****/
 
     public static int verificar_centrogalactico(MapaGalactico mapa, Nave nave, int salto, int actual){
         salto = Math.abs(salto);

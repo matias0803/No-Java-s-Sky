@@ -3,6 +3,10 @@ public class Helado extends Planeta implements tieneAsentamientos{
     
     private int temperatura;
     
+/*****
+* Helado()
+* inicializa los valores correspondientes segun el enunciado
+*****/
 
     public Helado(){
 
@@ -14,27 +18,51 @@ public class Helado extends Planeta implements tieneAsentamientos{
         
     }
 
-   
+/*****
+* getTemperatura()
+* retorna la temperatura
+*****/  
 
     public int getTemperatura() {
         return temperatura;
     }
 
+/*****
+* setTemperatura(int temperatura)
+* actualiza el valor de la temperatura
+*****/  
+
+
     public void setTemperatura(int temperatura) {
         this.temperatura = temperatura;
     }
 
-
+/*****
+* boolean visitar(Jugador jugador)
+* retorna true
+*****/
 
     @Override
     public boolean visitar(Jugador jugador){
         return true;
     }
 
+/*****
+*int extraerRecursos(int tipo)
+* retorna 0
+*****/
+
     @Override
     public int extraerRecursos(int tipo){
         return 0;
     }
+
+/*****
+*int extraerRecursos(int tipo, int cantidad, Jugador jugador)
+* calcula la nueva cantidad de el recurso a extraer dependiendo de el tipo
+* actualiza la nueva cantidad
+* retorna la nueva cantidad
+*****/
 
     @Override
     public int extraerRecursos(int tipo, int cantidad, Jugador jugador){
@@ -66,15 +94,31 @@ public class Helado extends Planeta implements tieneAsentamientos{
         return 0;
     }
 
+/*****
+* boolean salir()
+* retorna true
+*****/
+
     @Override
     public boolean salir(){
         return true;
     }
 
-
+/*****
+* void visitarAsentamientos(Jugador jugador)
+* retorna void
+*****/
     public void visitarAsentamientos(Jugador jugador){
 
     }
+
+/*****
+* void visitarAsentamientos(Jugador jugador, Nave nave)
+*  da la bienvenida a los asentamientos y da las opciones 
+*  si quieres visitar los asentamientos da otro mensaje de bienvenida
+*  y pregunta si quieres intercambiar si es asi muestra las opciones
+* y dependiendo de la opcion actueliza la mejora y actualiza los valores del inventario
+*****/
 
     public void visitarAsentamientos(Jugador jugador, Nave nave){
 

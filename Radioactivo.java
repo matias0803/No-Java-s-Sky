@@ -3,7 +3,10 @@ public class Radioactivo extends Planeta {
     private int uranio;
     private int radiacion;
 
-    
+/*****
+*Radioactivo()
+* inicializa los valores correspondientes segun el enunciado
+*****/
 
     public Radioactivo(){
 
@@ -17,34 +20,68 @@ public class Radioactivo extends Planeta {
 
     }
 
+/*****
+* int getUranio()
+* retorna el valor de el Uranio
+*****/ 
 
     public int getUranio() {
         return uranio;
     }
 
+/*****
+* void setUranio(int uranio)
+* actualiza el valor de el uranio
+*****/ 
+
     public void setUranio(int uranio) {
         this.uranio = uranio;
     }
+
+/*****
+* int getRadiacion()
+* retorna el valor de Radiacion
+*****/ 
 
     public int getRadiacion() {
         return radiacion;
     }
 
+/*****
+* void setRadiacion(int radiacion)
+* actualiza el valor de Radiacion
+*****/ 
+
     public void setRadiacion(int radiacion) {
         this.radiacion = radiacion;
     }
 
-
+/*****
+* boolean visitar(Jugador jugador)
+* retorna true
+*****/
 
     @Override
     public boolean visitar(Jugador jugador){
         return true;
     }
 
+/*****
+*int extraerRecursos(int tipo)
+* retorna 0
+*****/
+
     @Override
     public int extraerRecursos(int tipo){
         return 0;
     }
+
+/*****
+*int extraerRecursos(int tipo, int cantidad, Jugador jugador)
+* calcula la nueva cantidad de el recurso a extraer dependiendo de el tipo
+* actualiza la nueva cantidad
+* retorna la nueva cantidad
+*****/
 
     @Override
     public int extraerRecursos(int tipo, int cantidad, Jugador jugador){
@@ -88,6 +125,11 @@ public class Radioactivo extends Planeta {
         }
         return 0;
     }
+
+/*****
+* boolean salir()
+* retorna true
+*****/
 
     @Override
     public boolean salir(){

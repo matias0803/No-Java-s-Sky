@@ -14,33 +14,68 @@ public class Volcanico extends Planeta{
         
     }
 
+/*****
+* int getPlatino()
+* retorna el valor de el platino
+*****/ 
+
     public int getPlatino() {
         return platino;
     }
+
+/*****
+* void setPlatino(int platino)
+* actualiza el valor de el platino
+*****/ 
 
     public void setPlatino(int platino) {
         this.platino = platino;
     }
 
+/*****
+* int getTemperatura()
+* retorna el valor de la temperatura
+*****/    
     
     public int getTemperatura() {
         return temperatura;
     }
 
+/*****
+* void setTemperatura(int temperatura)
+* actualiza el valor de la temperatura
+*****/ 
+
     public void setTemperatura(int temperatura) {
         this.temperatura = temperatura;
     }
 
+/*****
+* boolean visitar(Jugador jugador)
+* retorna true
+*****/
 
     @Override
     public boolean visitar(Jugador jugador){
         return true;
     }
 
+/*****
+*int extraerRecursos(int tipo)
+* retorna 0
+*****/
+
     @Override
     public int extraerRecursos(int tipo){
         return 0;
     }
+
+/*****
+*int extraerRecursos(int tipo, int cantidad, Jugador jugador)
+* calcula la nueva cantidad de el recurso a extraer dependiendo de el tipo
+* actualiza la nueva cantidad
+* retorna la nueva cantidad
+*****/
 
     @Override
     public int extraerRecursos(int tipo, int cantidad, Jugador jugador){
@@ -84,6 +119,11 @@ public class Volcanico extends Planeta{
         }
         return 0;
     }
+
+/*****
+* boolean salir()
+* retorna true
+*****/
 
     @Override
     public boolean salir(){

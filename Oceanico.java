@@ -5,7 +5,10 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
     private int profundidad;
     
 
- 
+/*****
+* Oceanico()
+* inicializa los valores correspondientes segun el enunciado
+*****/
 
     public Oceanico(){
         
@@ -18,22 +21,38 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
 
     }
 
-
+/*****
+* int getProfundiad()
+* retorna el valor de la profundidad
+*****/ 
 
     public int getProfundidad() {
         return profundidad;
     }
 
+/*****
+* void setProfundidad(int profundidad)
+* actualiza el valor de la profundidad
+*****/ 
+
     public void setProfundidad(int profundidad) {
         this.profundidad = profundidad;
     }
 
-
+/*****
+* boolean visitar(Jugador jugador)
+* retorna true
+*****/
     @Override
     public boolean visitar(Jugador jugador){
 
         return true;
     }
+
+/*****
+*int extraerRecursos(int tipo)
+* retorna 0
+*****/
 
     @Override
     public int extraerRecursos(int tipo){
@@ -41,6 +60,13 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
         return 0;
     }
 
+/*****
+*int extraerRecursos(int tipo, int cantidad, Jugador jugador)
+* calcula la nueva cantidad de el recurso a extraer dependiendo de el tipo
+* actualiza la nueva cantidad
+* retorna la nueva cantidad
+*****/
+    
     @Override
     public int extraerRecursos(int tipo, int cantidad, Jugador jugador){
         if (tipo == 1) {
@@ -71,10 +97,20 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
         return 0;
     }
 
+/*****
+* boolean salir()
+* retorna true
+*****/
+
     @Override
     public boolean salir(){
         return true;
     }
+
+/*****
+* void visitarAsentamientos(Jugador jugador)
+* retorna void
+*****/
 
     public void visitarAsentamientos(Jugador jugador){
 
@@ -179,6 +215,14 @@ public class Oceanico extends Planeta implements tieneAsentamientos{
 
 
     }
+
+/*****
+* void visitarAsentamientos(Jugador jugador, Nave nave)
+*  da la bienvenida a los asentamientos y da las opciones 
+*  si quieres visitar los asentamientos da otro mensaje de bienvenida
+*  y pregunta si quieres intercambiar si es asi muestra las opciones
+* y dependiendo de la opcion actueliza la mejora y actualiza los valores del inventario
+*****/
 
     public void visitarAsentamientos(Jugador jugador, Nave nave){
         
