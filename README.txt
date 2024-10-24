@@ -1,1 +1,14 @@
-Este proyecto es una versión simplificada del juego No Man's Sky desarrollada en Java. El jugador puede explorar un sistema planetario, recolectar recursos, interactuar con aldeanos y realizar saltos entre planetas, todo a través de una interfaz de consola. El juego implementa mecánicas como la gestión de energía y combustible, el comercio con personajes no jugables y la recolección de materiales. Para compilar y ejecutar el código se utilizó javac 18.0.2-ea y openjdk version 18.0.2-ea (2022-07-19). Este proyecto explora conceptos clave de programación orientada a objetos, manejo de inventarios y generación aleatoria de contenido.
+No Man's Sky Simplified
+This project is a simplified version of the game No Man's Sky, developed in Java. Players can explore a planetary system, collect resources, interact with villagers, and jump between planets, all through a console interface. The game implements mechanics such as energy and fuel management, trading with non-playable characters, and resource gathering.
+
+Features
+Exploration: Navigate through different planets and gather resources.
+Interaction: Trade with NPCs to acquire necessary materials.
+Inventory Management: Keep track of collected resources and manage your inventory.
+Random Content Generation: Encounter diverse planets and resources.
+Compilation
+The code is compiled and executed using:
+
+javac 18.0.2-ea
+openjdk version 18.0.2-ea (2022-07-19)
+This project explores key concepts in object-oriented programming, inventory handling, and random content generation.
